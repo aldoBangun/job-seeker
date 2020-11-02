@@ -24,6 +24,10 @@ form > * + * {
   position: relative;
 }
 
+label {
+  text-transform: Capitalize;
+}
+
 input {
   display: block;
   width: 100%;
