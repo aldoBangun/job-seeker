@@ -1,5 +1,9 @@
 <template>
-  <div>
-    <h1>User Auth</h1>
-  </div>
+  <router-view></router-view>
 </template>
+
+<script>
+export default {};
+</script>
+
+<style scoped></style>
