@@ -13,6 +13,7 @@ const router = createRouter({
     { path: '/jobs', component: JobsList },
     {
       path: '/auth',
+      redirect: '/auth/login',
       component: UserAuth,
       children: [
         { path: 'login', component: UserLogin },

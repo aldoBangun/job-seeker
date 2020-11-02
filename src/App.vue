@@ -23,10 +23,10 @@ export default {
   --clr-primary-soft: #41b78355;
   --clr-secondary: #34495e;
   --clr-danger: #b74141;
-  --clr-danger-soft: #b7414155;
+  --clr-danger-soft: #b7414133;
   --clr-dark: #2f2f2f;
   --clr-light: #fafafa;
-  --clr-lightgray: #cfcfcf;
+  --clr-lightgray: #eaeaea;
   --clr-darkgray: #7f7f7f;
 }
 

@@ -26,10 +26,25 @@ form > * + * {
 
 label {
   text-transform: capitalize;
+  margin: 0 0 1rem;
 }
 
 input {
   display: block;
   width: 100%;
+  background-color: var(--clr-lightgray);
+  border: 1px solid var(--clr-darkgray);
+  padding: 0.5rem;
+  font-size: 0.8rem;
+}
+
+input:focus {
+  background-color: var(--clr-primary-soft);
+  border: 1px solid var(--clr-primary);
+}
+
+.error input {
+  background-color: var(--clr-danger-soft);
+  border: 1px solid var(--clr-danger);
 }
 </style>
