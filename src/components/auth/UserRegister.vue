@@ -4,14 +4,23 @@
       <div class="form-group" :class="errorUsername">
         <label for="username">username</label>
         <input type="text" id="username" v-model.trim="username" />
+        <small v-if="invalidUsername" class="error"
+          >Username shouldn't be empty!</small
+        >
       </div>
       <div class="form-group" :class="errorEmail">
         <label for="email">email</label>
-        <input type="email" id="email" v-model.trim="email" />
+        <input type="text" id="email" v-model.trim="email" />
+        <small v-if="invalidEmail" class="error"
+          >Please enter a valid email</small
+        >
       </div>
       <div class="form-group" :class="errorPassword">
         <label for="password">password</label>
         <input type="password" id="password" v-model.trim="password" />
+        <small v-if="invalidPassword" class="error">
+          Password must have at least 8 characters
+        </small>
       </div>
       <base-button mode="btn-primary btn-rounded btn-block">
         Sign Up
@@ -50,8 +59,8 @@ export default {
   methods: {
     register(e) {
       this.invalidEmail = false;
+      this.invalidUsername = false;
       this.invalidPassword = false;
-      this.invalidEmail = false;
 
       const { email, username, password } = this;
 
@@ -65,6 +74,7 @@ export default {
         if (email === '' || !email.includes('@')) this.invalidEmail = true;
         if (username === '') this.invalidUsername = true;
         if (password === '' || password.length < 8) this.invalidPassword = true;
+        return;
       }
 
       const newUser = { email, username, password };

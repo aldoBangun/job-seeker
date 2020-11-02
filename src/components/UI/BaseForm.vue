@@ -47,4 +47,10 @@ input:focus {
   background-color: var(--clr-danger-soft);
   border: 1px solid var(--clr-danger);
 }
+
+small.error {
+  color: var(--clr-danger);
+  font-style: oblique;
+  font-style: italic;
+}
 </style>
