@@ -6,9 +6,27 @@ import actions from './actions';
 const store = createStore({
   modules: {},
   state() {
-    return {};
+    return {
+      email: null,
+      userId: null,
+      username: null
+    };
   },
-  getters: {},
+  getters: {
+    email(state) {
+      return state.email;
+    },
+    userId(state) {
+      return state.userId;
+    },
+    username(state) {
+      return state.username;
+    },
+    isAuth(state) {
+      const { email, userId } = state;
+      return email && userId;
+    }
+  },
   mutations,
   actions
 });
