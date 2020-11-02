@@ -1,6 +1,10 @@
 <template>
   <TheNavbar />
-  <router-view></router-view>
+  <router-view v-slot="slotProps">
+    <transition name="router" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
 </template>
 
 <script>
@@ -95,5 +99,26 @@ p,
 small {
   line-height: 1.25em;
   color: var(--clr-darkgray);
+}
+
+.router-enter-from {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.router-enter-active,
+.router-leave-active {
+  transition: 0.2s linear;
+}
+
+.router-enter-to,
+.router-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.router-leave-to {
+  opacity: 0;
+  transform: translateY(50px);
 }
 </style>

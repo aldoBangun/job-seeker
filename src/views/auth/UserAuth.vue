@@ -1,3 +1,5 @@
 <template>
-  <h1>User Auth</h1>
+  <div>
+    <h1>User Auth</h1>
+  </div>
 </template>
