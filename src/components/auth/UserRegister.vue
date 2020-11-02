@@ -4,16 +4,16 @@
       <div class="form-group" :class="errorUsername">
         <label for="username">username</label>
         <input type="text" id="username" v-model.trim="username" />
-        <small v-if="invalidUsername" class="error"
-          >Username shouldn't be empty!</small
-        >
+        <small v-if="invalidUsername" class="error">
+          Username shouldn't be empty!
+        </small>
       </div>
       <div class="form-group" :class="errorEmail">
         <label for="email">email</label>
         <input type="text" id="email" v-model.trim="email" />
-        <small v-if="invalidEmail" class="error"
-          >Please enter a valid email</small
-        >
+        <small v-if="invalidEmail" class="error">
+          Please enter a valid email
+        </small>
       </div>
       <div class="form-group" :class="errorPassword">
         <label for="password">password</label>
@@ -57,7 +57,7 @@ export default {
     }
   },
   methods: {
-    register(e) {
+    register() {
       this.invalidEmail = false;
       this.invalidUsername = false;
       this.invalidPassword = false;
@@ -68,18 +68,20 @@ export default {
         email === '' ||
         !email.includes('@') ||
         username === '' ||
-        password === '' ||
         password.length < 8
       ) {
         if (email === '' || !email.includes('@')) this.invalidEmail = true;
         if (username === '') this.invalidUsername = true;
-        if (password === '' || password.length < 8) this.invalidPassword = true;
+        if (password.length < 8) this.invalidPassword = true;
+
         return;
       }
 
       const newUser = { email, username, password };
 
-      e.target.reset();
+      this.email = '';
+      this.username = '';
+      this.password = '';
       console.log(newUser);
     }
   }
