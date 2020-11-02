@@ -1,5 +1,5 @@
 <template>
-  <router-link v-if="link" class="btn" :class="mode">
+  <router-link v-if="link" :to="link" class="btn" :class="mode">
     <slot></slot>
   </router-link>
   <button v-else class="btn" :class="mode">
@@ -26,14 +26,14 @@ export default {
 <style scoped>
 .btn {
   display: inline-block;
-  padding: 0.5em 1em;
+  padding: 0.35em 1em;
   color: var(--clr-light);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   transition: 0.15s;
 }
 
 .btn:hover {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  filter: brightness(1.2);
 }
 
 .btn:active {
@@ -50,5 +50,15 @@ export default {
 
 .btn-danger {
   background-color: var(--clr-danger);
+}
+
+.btn-rounded {
+  border-radius: 1.35em;
+}
+
+.btn-outline {
+  color: currentcolor;
+  border: 1px solid currentColor;
+  background-color: transparent;
 }
 </style>
