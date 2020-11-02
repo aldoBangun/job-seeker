@@ -61,4 +61,9 @@ export default {
   border: 1px solid currentColor;
   background-color: transparent;
 }
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
 </style>

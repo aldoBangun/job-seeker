@@ -25,7 +25,7 @@ form > * + * {
 }
 
 label {
-  text-transform: Capitalize;
+  text-transform: capitalize;
 }
 
 input {
