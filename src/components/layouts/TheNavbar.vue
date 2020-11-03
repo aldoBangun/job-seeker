@@ -53,6 +53,7 @@ nav {
   height: 4rem;
   background-color: var(--clr-primary);
   color: var(--clr-light);
+  z-index: 99;
 }
 
 ul {

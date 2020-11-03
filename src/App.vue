@@ -106,7 +106,7 @@ small {
 
 .router-enter-from {
   opacity: 0;
-  transform: translateY(-50px);
+  transform: translateX(-50px);
 }
 
 .router-enter-active,
@@ -117,11 +117,11 @@ small {
 .router-enter-to,
 .router-leave-from {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateX(0);
 }
 
 .router-leave-to {
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateX(50px);
 }
 </style>
