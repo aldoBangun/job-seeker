@@ -9,17 +9,23 @@
           <router-link to="/jobs">All Jobs</router-link>
         </li>
         <li v-if="isLoggedIn">
+          <router-link to="/profile">Profile</router-link>
+        </li>
+        <li v-if="isLoggedIn">
           <base-button
-            @click="userLogout"
+            @click="logout"
             mode="btn-secondary btn-rounded btn-outline"
           >
             Logout
           </base-button>
         </li>
         <li v-else>
-          <base-button link="/auth" mode="btn-secondary btn-rounded btn-outline"
-            >Sign In</base-button
+          <base-button
+            link="/auth"
+            mode="btn-secondary btn-rounded btn-outline"
           >
+            Sign In
+          </base-button>
         </li>
       </ul>
     </base-container>
@@ -27,7 +33,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isAuth;
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch('logout');
+    }
+  }
+};
 </script>
 
 <style scoped>

@@ -3,8 +3,8 @@ export default {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     return users;
   },
-  register(context, payload) {
-    const users = context.dispatch('getUsers');
+  async register(context, payload) {
+    const users = await context.dispatch('getUsers');
     const id = `u${users.length + 1}`;
     const existUser = users.find(user => user.email === payload.email);
 
@@ -37,5 +37,10 @@ export default {
     }
 
     context.commit('setActiveUser', validUser);
+  },
+  logout(context) {
+    const noUser = { username: null, email: null, userId: null };
+
+    context.commit('setActiveUser', noUser);
   }
 };
