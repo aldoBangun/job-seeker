@@ -31,9 +31,9 @@ const router = createRouter({
 
 router.beforeEach((to, _, next) => {
   if (to.meta.needAuth && !store.getters.isAuth) {
-    next('/auth');
+    next('/jobs');
   } else if (to.meta.needUnauth && store.getters.isAuth) {
-    next(false);
+    next('/jobs');
   } else {
     next();
   }

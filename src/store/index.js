@@ -7,23 +7,19 @@ const store = createStore({
   modules: {},
   state() {
     return {
-      email: null,
-      userId: null,
-      username: null
+      user: {
+        email: null,
+        userId: null,
+        username: null
+      }
     };
   },
   getters: {
-    email(state) {
-      return state.email;
-    },
-    userId(state) {
-      return state.userId;
-    },
-    username(state) {
-      return state.username;
+    user(state) {
+      return state.user;
     },
     isAuth(state) {
-      const { email, userId } = state;
+      const { email, userId } = state.user;
       return email && userId;
     }
   },
