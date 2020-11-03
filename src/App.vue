@@ -13,6 +13,9 @@ import TheNavbar from './components/layouts/TheNavbar';
 export default {
   components: {
     TheNavbar
+  },
+  beforeCreate() {
+    this.$store.dispatch('loadSession');
   }
 };
 </script>

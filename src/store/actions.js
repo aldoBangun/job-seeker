@@ -3,6 +3,18 @@ export default {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     return users;
   },
+  createSession(_, payload) {
+    localStorage.setItem('isLoggedIn', payload);
+  },
+  async loadSession(context) {
+    const userId = localStorage.getItem('isLoggedIn');
+    if (userId) {
+      const users = await context.dispatch('getUsers');
+      const validUser = users.find(user => user.userId === userId);
+
+      context.commit('setActiveUser', validUser);
+    }
+  },
   async register(context, payload) {
     const users = await context.dispatch('getUsers');
     const id = `u${users.length + 1}`;
@@ -18,7 +30,7 @@ export default {
     payload.description = null;
 
     users.push(payload);
-
+    context.dispatch('createSession', id);
     localStorage.setItem('users', JSON.stringify(users));
 
     context.commit('setActiveUser', payload);
@@ -36,11 +48,13 @@ export default {
       );
     }
 
+    context.dispatch('createSession', validUser.userId);
     context.commit('setActiveUser', validUser);
   },
   logout(context) {
     const noUser = { username: null, email: null, userId: null };
 
+    context.dispatch('createSession', '');
     context.commit('setActiveUser', noUser);
   }
 };
