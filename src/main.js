@@ -7,6 +7,7 @@ import BaseButton from './components/UI/BaseButton.vue';
 import BaseContainer from './components/UI/BaseContainer.vue';
 import BaseForm from './components/UI/BaseForm.vue';
 import BaseCard from './components/UI/BaseCard.vue';
+import BaseBadge from './components/UI/BaseBadge.vue';
 
 const app = createApp(App);
 
@@ -14,6 +15,7 @@ app.component('base-button', BaseButton);
 app.component('base-container', BaseContainer);
 app.component('base-form', BaseForm);
 app.component('base-card', BaseCard);
+app.component('base-badge', BaseBadge);
 
 app.use(store);
 app.use(router);
