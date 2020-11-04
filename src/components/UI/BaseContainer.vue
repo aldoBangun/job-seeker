@@ -38,4 +38,10 @@ export default {
 .flex-between-center {
   justify-content: space-between;
 }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
 </style>

@@ -14,6 +14,7 @@
       </ul>
     </div>
     <main>
+      <h2 class="title">{{ pageTitle }}</h2>
       <keep-alive>
         <component :is="selectedTab"></component>
       </keep-alive>
@@ -45,7 +46,13 @@ export default {
     AddJob
   },
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['user']),
+    pageTitle() {
+      const { selectedTab } = this;
+      if (selectedTab === 'user-overview') return 'Overview';
+      if (selectedTab === 'edit-profile') return 'Edit Profile';
+      return 'Post a Job';
+    }
   }
 };
 </script>
@@ -77,5 +84,10 @@ main {
   flex: 1;
   padding: 2rem;
   min-height: calc(100vh - 4rem);
+}
+
+.title {
+  text-align: center;
+  margin: 0 0 2rem;
 }
 </style>
