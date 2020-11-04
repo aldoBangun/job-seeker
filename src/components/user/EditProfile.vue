@@ -52,8 +52,8 @@ export default {
       const updatedUser = {
         ...this.user,
         username,
-        expertise,
-        description
+        description,
+        expertise: expertise.split(', ')
       };
 
       this.$store.dispatch('updateUser', updatedUser);
@@ -64,7 +64,7 @@ export default {
 
     this.username = username;
     this.email = email;
-    this.expertise = expertise;
+    this.expertise = expertise.join(', ');
     this.description = description;
   }
 };

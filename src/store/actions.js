@@ -56,5 +56,13 @@ export default {
 
     context.dispatch('createSession', '');
     context.commit('setActiveUser', noUser);
+  },
+  async updateUser(context, payload) {
+    const users = await context.dispatch('getUsers');
+    const index = users.findIndex(user => user.userId === payload.userId);
+    users[index] = payload;
+
+    localStorage.setItem('users', JSON.stringify(users));
+    context.commit('setActiveUser', payload);
   }
 };
