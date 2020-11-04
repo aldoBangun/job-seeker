@@ -30,7 +30,7 @@ export default {
   --clr-dark: #2f2f2f;
   --clr-light: #fafafa;
   --clr-lightgray: #eaeaea;
-  --clr-darkgray: #7f7f7f;
+  --clr-darkgray: #8f8f8f;
 }
 
 :focus {

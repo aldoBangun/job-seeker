@@ -29,7 +29,9 @@ label {
   margin: 0 0 1rem;
 }
 
-input {
+input,
+input:disabled,
+textarea {
   display: block;
   width: 100%;
   background-color: var(--clr-lightgray);
@@ -38,7 +40,14 @@ input {
   font-size: 0.8rem;
 }
 
-input:focus {
+input:disabled {
+  background-color: #bbbbbb;
+  border: 1px solid #aaaaaa;
+  color: var(--clr-lightgray);
+}
+
+input:focus,
+textarea:focus {
   background-color: var(--clr-primary-soft);
   border: 1px solid var(--clr-primary);
 }

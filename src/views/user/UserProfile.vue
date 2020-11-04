@@ -1,37 +1,22 @@
 <template>
   <section>
-    <div class="test">
-      <div class="icon">{{ user.icon }}</div>
+    <div class="sidebar">
       <ul>
         <li>
-          <a href="#">Overview</a>
+          <a href="#" @click="selectTab('user-overview')">Overview</a>
         </li>
         <li>
-          <a href="#">Edit Profile</a>
+          <a href="#" @click="selectTab('edit-profile')">Edit Profile</a>
         </li>
         <li>
           <a href="#">My Jobs</a>
         </li>
-        <li>
-          <a href="#">My Proposals</a>
-        </li>
       </ul>
     </div>
     <main>
-      <h1>
-        {{ user.username }}
-      </h1>
-      <h3>Email</h3>
-      <p>{{ user.email }}</p>
-      <h3>Expertise</h3>
-      <p v-if="user.expertise.length">
-        <base-badge v-for="skill in user.expertise" :key="skill">
-          {{ skill }}
-        </base-badge>
-      </p>
-      <p v-else>No skills were added</p>
-      <h3>Bio</h3>
-      <p>{{ user.desc || 'No Description' }}</p>
+      <keep-alive>
+        <component :is="selectedTab"></component>
+      </keep-alive>
     </main>
   </section>
 </template>
@@ -39,8 +24,24 @@
 <script>
 import { mapGetters } from 'vuex';
 
+import UserOverview from '../../components/user/UserOverview';
+import EditProfile from '../../components/user/EditProfile';
+
 export default {
-  components: {},
+  data() {
+    return {
+      selectedTab: 'user-overview'
+    };
+  },
+  methods: {
+    selectTab(tab) {
+      this.selectedTab = tab;
+    }
+  },
+  components: {
+    UserOverview,
+    EditProfile
+  },
   computed: {
     ...mapGetters(['user'])
   }
@@ -50,14 +51,13 @@ export default {
 <style scoped>
 section {
   display: flex;
-  gap: 1rem;
 }
 
-.test {
+.sidebar {
   background-color: var(--clr-dark);
   color: var(--clr-light);
   padding: 2rem 0;
-  width: 20rem;
+  width: 10rem;
   display: flex;
   flex-direction: column;
 }
@@ -71,19 +71,9 @@ li a:hover {
   background-color: var(--clr-darkgray);
 }
 
-.icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background-color: var(--clr-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-transform: uppercase;
-  font-size: 2.5rem;
-}
-
 main {
+  flex: 1;
+  padding: 2rem;
   min-height: calc(100vh - 4rem);
 }
 </style>
