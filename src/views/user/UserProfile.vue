@@ -9,7 +9,7 @@
           <a href="#" @click="selectTab('edit-profile')">Edit Profile</a>
         </li>
         <li>
-          <a href="#">My Jobs</a>
+          <a href="#" @click="selectTab('add-job')">Post Jobs</a>
         </li>
       </ul>
     </div>
@@ -26,6 +26,7 @@ import { mapGetters } from 'vuex';
 
 import UserOverview from '../../components/user/UserOverview';
 import EditProfile from '../../components/user/EditProfile';
+import AddJob from '../../components/user/AddJob';
 
 export default {
   data() {
@@ -40,7 +41,8 @@ export default {
   },
   components: {
     UserOverview,
-    EditProfile
+    EditProfile,
+    AddJob
   },
   computed: {
     ...mapGetters(['user'])
