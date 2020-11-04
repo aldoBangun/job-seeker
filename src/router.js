@@ -7,12 +7,16 @@ import UserAuth from './views/auth/UserAuth.vue';
 import UserLogin from './components/auth/UserLogin.vue';
 import UserRegister from './components/auth/UserRegister.vue';
 import UserProfile from './views/user/UserProfile.vue';
+import JobDetails from './components/jobs/JobDetails.vue';
+import AddProposal from './components/proposals/AddProposal.vue';
 
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', redirect: '/jobs' },
     { path: '/jobs', component: JobsList },
+    { path: '/jobs/:id', component: JobDetails },
+    { path: '/jobs/:id/apply-job', component: AddProposal },
     { path: '/profile', component: UserProfile, meta: { needAuth: true } },
     {
       path: '/auth',
