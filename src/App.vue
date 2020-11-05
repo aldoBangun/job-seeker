@@ -17,6 +17,7 @@ export default {
   beforeCreate() {
     this.$store.dispatch('loadSession');
     this.$store.dispatch('jobs/loadJobs');
+    this.$store.dispatch('proposals/loadProposals');
   }
 };
 </script>
