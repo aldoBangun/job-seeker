@@ -56,6 +56,10 @@ nav {
   z-index: 99;
 }
 
+.nav-brand {
+  font-weight: 600;
+}
+
 ul {
   display: flex;
   align-items: center;
