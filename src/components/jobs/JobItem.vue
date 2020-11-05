@@ -8,7 +8,11 @@
     </div>
     <div class="actions">
       <base-button mode="btn-outline" :link="jobDetails">Details</base-button>
-      <base-button mode="btn-primary" v-if="job.userId !== userId">
+      <base-button
+        mode="btn-primary"
+        v-if="job.userId !== userId"
+        :link="applyJob"
+      >
         Apply Now
       </base-button>
     </div>
@@ -29,6 +33,9 @@ export default {
     },
     jobDetails() {
       return `${this.$route.path}/${this.job.jobId}`;
+    },
+    applyJob() {
+      return `${this.jobDetails}/apply-job`;
     }
   },
   methods: {}
@@ -44,7 +51,6 @@ export default {
 }
 
 .actions {
-  /* justify-content: flex-end; */
   gap: 1em;
   margin: 2rem 0 0;
 }
