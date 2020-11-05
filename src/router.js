@@ -15,8 +15,8 @@ const router = createRouter({
   routes: [
     { path: '/', redirect: '/jobs' },
     { path: '/jobs', component: JobsList },
-    { path: '/jobs/:id', component: JobDetails },
-    { path: '/jobs/:id/apply-job', component: AddProposal },
+    { path: '/jobs/:jobId', component: JobDetails },
+    { path: '/jobs/:jobId/apply-job', component: AddProposal },
     { path: '/profile', component: UserProfile, meta: { needAuth: true } },
     {
       path: '/auth',

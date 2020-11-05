@@ -7,7 +7,7 @@
       </base-badge>
     </div>
     <div class="actions">
-      <base-button mode="btn-outline">Details</base-button>
+      <base-button mode="btn-outline" :link="jobDetails">Details</base-button>
       <base-button mode="btn-primary" v-if="job.userId !== userId">
         Apply Now
       </base-button>
@@ -26,8 +26,12 @@ export default {
   computed: {
     userId() {
       return this.$store.getters.user.userId;
+    },
+    jobDetails() {
+      return `${this.$route.path}/${this.job.jobId}`;
     }
-  }
+  },
+  methods: {}
 };
 </script>
 
