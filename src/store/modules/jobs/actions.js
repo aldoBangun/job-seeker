@@ -4,8 +4,6 @@ export default {
   },
   async loadJobs(context) {
     const jobs = await context.dispatch('getJobs');
-    const proposals = context.rootGetters['proposals/proposals'];
-    console.log(jobs, proposals);
 
     context.commit('loadJobs', jobs);
   },

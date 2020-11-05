@@ -3,7 +3,8 @@
     <h3>Job Posted</h3>
     <p>{{ jobs.length }} Job(s)</p>
     <h3>Last Job</h3>
-    <p>{{ jobs[jobs.length - 1].title }}</p>
+    <p v-if="jobs.length">{{ jobs[jobs.length - 1].title }}</p>
+    <p v-else>No Jobs posted yet</p>
   </base-card>
 </template>
 
@@ -15,7 +16,7 @@ export default {
     },
     jobs() {
       const jobs = this.$store.getters['jobs/jobs'];
-      return jobs.filter(job => job.userId === this.userId);
+      return jobs.filter(job => job.userId === this.userId) || [];
     }
   }
 };
