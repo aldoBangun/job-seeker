@@ -2,7 +2,11 @@
   <base-card>
     <h4 v-if="isApplied">You have been applied to this job</h4>
     <h4 v-else>Apply to "{{ job.title }}"</h4>
-    <base-button mode="btn-block btn-rounded btn-outline" v-if="isApplied">
+    <base-button
+      mode="btn-block btn-rounded btn-outline"
+      v-if="isApplied"
+      @click="back"
+    >
       Back
     </base-button>
     <base-form @submit.prevent="submitProposal" v-else>
@@ -71,6 +75,9 @@ export default {
       } else {
         if (confirm(this.error)) this.$router.replace('/auth');
       }
+    },
+    back() {
+      this.$router.back();
     }
   }
 };

@@ -30,7 +30,13 @@ const router = createRouter({
     },
     { path: '/:notFound(.*)', component: NotFound }
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+  scrollBehavior(_, _z, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { left: 0, top: 0 };
+  }
 });
 
 router.beforeEach((to, _, next) => {
