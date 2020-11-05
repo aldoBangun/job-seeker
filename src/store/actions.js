@@ -1,4 +1,5 @@
 import fetchDatas from './modules/utilities/fetchDatas';
+import setDatas from './modules/utilities/setDatas';
 
 export default {
   createSession(_, payload) {
@@ -29,7 +30,7 @@ export default {
 
     users.push(payload);
     context.dispatch('createSession', id);
-    localStorage.setItem('users', JSON.stringify(users));
+    setDatas('users', users);
 
     context.commit('setActiveUser', payload);
   },
@@ -60,7 +61,7 @@ export default {
     const index = users.findIndex(user => user.userId === payload.userId);
     users[index] = payload;
 
-    localStorage.setItem('users', JSON.stringify(users));
+    setDatas('users', users);
     context.commit('setActiveUser', payload);
   }
 };
