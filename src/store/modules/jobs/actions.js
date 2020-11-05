@@ -1,14 +1,14 @@
+import fetchDatas from '../utilities/fetchDatas';
+import setDatas from '../utilities/setDatas';
+
 export default {
-  getJobs() {
-    return JSON.parse(localStorage.getItem('jobs')) || [];
-  },
   async loadJobs(context) {
-    const jobs = await context.dispatch('getJobs');
+    const jobs = await fetchDatas('jobs');
 
     context.commit('loadJobs', jobs);
   },
   async addJob(context, payload) {
-    const jobs = await context.dispatch('getJobs');
+    const jobs = await fetchDatas('jobs');
     const jobId = `j${payload.userId}${new Date().getTime()}`;
     const newJob = {
       ...payload,
@@ -18,6 +18,6 @@ export default {
 
     context.commit('addJob', newJob);
     jobs.push(newJob);
-    localStorage.setItem('jobs', JSON.stringify(jobs));
+    setDatas('jobs', jobs);
   }
 };

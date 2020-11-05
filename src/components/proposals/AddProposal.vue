@@ -3,9 +3,9 @@
     <base-dialog title="Unauthorized" v-if="error">
       <h3>{{ error }}</h3>
 
-      <base-button mode="btn-outline btn-rounded" @click="error = null"
-        >cancel</base-button
-      >
+      <base-button mode="btn-outline btn-rounded" @click="error = null">
+        cancel
+      </base-button>
       <base-button mode="btn-primary btn-rounded" @click="confirmLogin">
         Sign In
       </base-button>

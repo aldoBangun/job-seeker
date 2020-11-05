@@ -1,21 +1,20 @@
+import fetchDatas from './modules/utilities/fetchDatas';
+
 export default {
-  getUsers() {
-    return JSON.parse(localStorage.getItem('users')) || [];
-  },
   createSession(_, payload) {
     localStorage.setItem('isLoggedIn', payload);
   },
   async loadSession(context) {
     const userId = localStorage.getItem('isLoggedIn');
     if (userId) {
-      const users = await context.dispatch('getUsers');
+      const users = await fetchDatas('users');
       const validUser = users.find(user => user.userId === userId);
 
       context.commit('setActiveUser', validUser);
     }
   },
   async register(context, payload) {
-    const users = await context.dispatch('getUsers');
+    const users = await fetchDatas('users');
     const id = `u${users.length + 1}`;
     const existUser = users.find(user => user.email === payload.email);
 
@@ -35,7 +34,7 @@ export default {
     context.commit('setActiveUser', payload);
   },
   async login(context, payload) {
-    const users = await context.dispatch('getUsers');
+    const users = await fetchDatas('users');
     const { email, password } = payload;
     const validUser = users.find(user => {
       return user.email === email && user.password === password;
@@ -57,7 +56,7 @@ export default {
     context.commit('setActiveUser', noUser);
   },
   async updateUser(context, payload) {
-    const users = await context.dispatch('getUsers');
+    const users = await fetchDatas('users');
     const index = users.findIndex(user => user.userId === payload.userId);
     users[index] = payload;
 
