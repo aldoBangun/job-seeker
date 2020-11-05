@@ -1,6 +1,6 @@
 <template>
   <base-card>
-    <p>Apply to "{{ job.title }}"</p>
+    <h4>Apply to "{{ job.title }}"</h4>
     <base-form @submit.prevent="submitProposal">
       <div class="form-group">
         <label for="name">name</label>

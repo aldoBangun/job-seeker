@@ -13,7 +13,7 @@ export default {
     payload.proposalId = proposalId;
     proposals.push(payload);
 
-    localStorage.setItem('proposals', proposals);
+    localStorage.setItem('proposals', JSON.stringify(proposals));
     context.commit('addProposals', payload);
   }
 };
