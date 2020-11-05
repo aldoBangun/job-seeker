@@ -7,14 +7,22 @@
       <strong>Skill Requirements:</strong>
       <ul>
         <li v-for="cat in job.categories" :key="cat">
-          <a :href="'https://google.com/search?q=' + cat" target="_blank">
+          <a
+            :href="'https://google.com/search?q=' + cat"
+            target="_blank"
+            :class="{ match: userSkills.includes(cat) }"
+          >
             {{ cat }}
           </a>
         </li>
       </ul>
       <strong>Proposal Submitted</strong>
       <p>{{ job.proposals.length }} proposals are submitted to this job</p>
-      <base-button mode="btn-primary btn-rounded" :link="linkApply">
+      <base-button
+        mode="btn-primary btn-rounded"
+        :link="linkApply"
+        v-if="job.userId !== userId"
+      >
         Apply Now
       </base-button>
     </base-card>
@@ -31,6 +39,12 @@ export default {
     },
     linkApply() {
       return `${this.$route.path}/apply-job`;
+    },
+    userSkills() {
+      return this.$store.getters.user.expertise;
+    },
+    userId() {
+      return this.$store.getters.user.userId;
     }
   }
 };
@@ -47,6 +61,14 @@ strong {
 
 li a {
   color: var(--clr-darkgray);
+}
+
+.match {
+  color: var(--clr-primary);
+}
+
+.match::after {
+  content: ' ✔';
 }
 
 li a:hover {
