@@ -27,6 +27,7 @@ export default {
 .btn {
   display: inline-block;
   padding: 0.35em 1em;
+  margin-right: 0.5em;
   color: var(--clr-light);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   transition: 0.15s;

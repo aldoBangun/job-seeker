@@ -1,28 +1,40 @@
 <template>
-  <base-card>
-    <h4 v-if="isApplied">You have been applied to this job</h4>
-    <h4 v-else>Apply to "{{ job.title }}"</h4>
-    <base-button
-      mode="btn-block btn-rounded btn-outline"
-      v-if="isApplied"
-      @click="back"
-    >
-      Back
-    </base-button>
-    <base-form @submit.prevent="submitProposal" v-else>
-      <div class="form-group">
-        <label for="name">name</label>
-        <input type="text" id="name" v-model.trim="name" />
-      </div>
-      <div class="form-group">
-        <label for="message">message</label>
-        <textarea id="message" v-model.trim="message" rows="4"></textarea>
-      </div>
-      <base-button mode="btn-block btn-rounded btn-primary">
-        Submit Proposal
+  <base-container>
+    <base-dialog title="Unauthorized" v-if="error">
+      <h3>{{ error }}</h3>
+
+      <base-button mode="btn-outline btn-rounded" @click="error = null"
+        >cancel</base-button
+      >
+      <base-button mode="btn-primary btn-rounded" @click="confirmLogin">
+        Sign In
       </base-button>
-    </base-form>
-  </base-card>
+    </base-dialog>
+    <base-card>
+      <h4 v-if="isApplied">You have been applied to this job</h4>
+      <h4 v-else>Apply to "{{ job.title }}"</h4>
+      <base-button
+        mode="btn-block btn-rounded btn-outline"
+        v-if="isApplied"
+        @click="back"
+      >
+        Back
+      </base-button>
+      <base-form @submit.prevent="submitProposal" v-else>
+        <div class="form-group">
+          <label for="name">name</label>
+          <input type="text" id="name" v-model.trim="name" />
+        </div>
+        <div class="form-group">
+          <label for="message">message</label>
+          <textarea id="message" v-model.trim="message" rows="4"></textarea>
+        </div>
+        <base-button mode="btn-block btn-rounded btn-primary">
+          Submit Proposal
+        </base-button>
+      </base-form>
+    </base-card>
+  </base-container>
 </template>
 
 <script>
@@ -31,23 +43,9 @@ export default {
     return {
       name: '',
       message: '',
-      error: 'Login Required. Sign In now?'
+      error: null
     };
   },
-  // watch: {
-  //   message(current) {
-  //     if (current.trim() !== '') {
-  //       this.error = 'Login required. Sign in now?';
-  //     } else {
-  //       this.error = '';
-  //     }
-  //   },
-  //   error(current) {
-  //     if (current.trim() !== '') {
-  //       console.log(this.error);
-  //     }
-  //   }
-  // },
   computed: {
     userId() {
       return this.$store.getters.user.userId;
@@ -73,8 +71,12 @@ export default {
       if (userId) {
         this.$store.dispatch('proposals/addProposal', proposal);
       } else {
-        if (confirm(this.error)) this.$router.replace('/auth');
+        this.error = null;
+        this.error = 'Login Required. Sign In now?';
       }
+    },
+    confirmLogin() {
+      this.$router.push('/auth');
     },
     back() {
       this.$router.back();
