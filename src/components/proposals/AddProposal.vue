@@ -1,5 +1,6 @@
 <template>
   <base-card>
+    <p>Apply to "{{ job.title }}"</p>
     <base-form @submit.prevent="submitProposal">
       <div class="form-group">
         <label for="name">name</label>
@@ -30,6 +31,11 @@ export default {
     },
     jobId() {
       return this.$route.params.jobId;
+    },
+    job() {
+      const jobs = this.$store.getters['jobs/jobs'];
+      const job = jobs.find(j => j.jobId === this.jobId);
+      return job;
     }
   },
   methods: {
