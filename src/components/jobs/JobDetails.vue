@@ -10,7 +10,7 @@
           <a
             :href="'https://google.com/search?q=' + cat"
             target="_blank"
-            :class="{ match: userSkills.includes(cat) }"
+            :class="{ match: userSkills.includes(cat) || '' }"
           >
             {{ cat }}
           </a>
@@ -41,7 +41,7 @@ export default {
       return `${this.$route.path}/apply-job`;
     },
     userSkills() {
-      return this.$store.getters.user.expertise;
+      return this.$store.getters.user.expertise || [];
     },
     userId() {
       return this.$store.getters.user.userId;
