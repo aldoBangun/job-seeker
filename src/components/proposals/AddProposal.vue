@@ -60,7 +60,9 @@ export default {
     },
     isApplied() {
       const proposals = this.$store.getters['proposals/proposals'];
-      const proposal = proposals.find(prop => prop.jobId === this.jobId);
+      const proposal = proposals.find(prop => {
+        return this.userId && prop.jobId === this.jobId;
+      });
       return proposal;
     }
   },
