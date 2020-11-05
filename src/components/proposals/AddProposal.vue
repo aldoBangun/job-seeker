@@ -24,12 +24,20 @@ export default {
       message: ''
     };
   },
+  computed: {
+    userId() {
+      return this.$store.getters.user.userId;
+    },
+    jobId() {
+      return this.$route.params.jobId;
+    }
+  },
   methods: {
     submitProposal() {
-      const { name, message } = this;
-      const proposal = { name, message };
+      const { name, message, userId, jobId } = this;
+      const proposal = { name, message, userId, jobId };
 
-      console.log(proposal);
+      this.$store.dispatch('proposals/addProposal', proposal);
     }
   }
 };

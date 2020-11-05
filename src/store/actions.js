@@ -1,7 +1,6 @@
 export default {
   getUsers() {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    return users;
+    return JSON.parse(localStorage.getItem('users')) || [];
   },
   createSession(_, payload) {
     localStorage.setItem('isLoggedIn', payload);

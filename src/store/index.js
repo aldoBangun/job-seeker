@@ -1,12 +1,14 @@
 import { createStore } from 'vuex';
 
 import jobs from './modules/jobs/';
+import proposals from './modules/proposals/';
 import mutations from './mutations';
 import actions from './actions';
 
 const store = createStore({
   modules: {
-    jobs
+    jobs,
+    proposals
   },
   state() {
     return {
