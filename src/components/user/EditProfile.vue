@@ -1,4 +1,10 @@
 <template>
+  <base-dialog v-if="error" title="An Error Occured">
+    <h3>{{ error }}</h3>
+    <base-button mode="btn-rounded btn-primary" @click="error = null">
+      Okay
+    </base-button>
+  </base-dialog>
   <base-card>
     <base-form @submit.prevent="updateProfile">
       <div class="form-group">
@@ -34,11 +40,13 @@
 
 <script>
 export default {
+  emits: ['switch-tab'],
   data() {
     return {
       username: '',
       expertise: '',
-      description: ''
+      description: '',
+      error: null
     };
   },
   computed: {
@@ -47,7 +55,7 @@ export default {
     }
   },
   methods: {
-    updateProfile() {
+    async updateProfile() {
       const { username, expertise, description } = this;
       const updatedUser = {
         ...this.user,
@@ -56,7 +64,12 @@ export default {
         expertise: expertise.split(', ')
       };
 
-      this.$store.dispatch('updateUser', updatedUser);
+      try {
+        await this.$store.dispatch('updateUser', updatedUser);
+        this.$emit('switch-tab', 'user-overview');
+      } catch (error) {
+        this.error = error.message;
+      }
     }
   },
   created() {

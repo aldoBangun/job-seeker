@@ -58,6 +58,11 @@ export default {
   },
   async updateUser(context, payload) {
     const users = await fetchDatas('users');
+
+    if (!users.length) {
+      throw new Error('Failed to update data. Please try again later');
+    }
+
     const index = users.findIndex(user => user.userId === payload.userId);
     users[index] = payload;
 
