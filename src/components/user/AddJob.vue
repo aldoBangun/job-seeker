@@ -36,6 +36,7 @@
 
 <script>
 export default {
+  emits: ['switch-tab'],
   data() {
     return {
       title: '',
@@ -52,7 +53,7 @@ export default {
       if (input === 'cat') return { error: this.invalidCat };
       if (input === 'desc') return { error: this.invalidDesc };
     },
-    addJob() {
+    async addJob() {
       this.invalidTitle = false;
       this.invalidDesc = false;
       this.invalidCat = false;
@@ -68,7 +69,8 @@ export default {
           categories: categories.split(', ')
         };
 
-        this.$store.dispatch('jobs/addJob', newJob);
+        await this.$store.dispatch('jobs/addJob', newJob);
+        this.$emit('switch-tab', 'user-overview');
 
         this.title = '';
         this.categories = '';
