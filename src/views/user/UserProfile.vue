@@ -2,13 +2,13 @@
   <section>
     <div class="sidebar">
       <ul>
-        <li>
+        <li :class="{ active: selectedTab === 'user-overview' }">
           <a href="#" @click="selectTab('user-overview')">Overview</a>
         </li>
-        <li>
+        <li :class="{ active: selectedTab === 'edit-profile' }">
           <a href="#" @click="selectTab('edit-profile')">Edit Profile</a>
         </li>
-        <li>
+        <li :class="{ active: selectedTab === 'add-job' }">
           <a href="#" @click="selectTab('add-job')">Post Jobs</a>
         </li>
       </ul>
@@ -78,6 +78,7 @@ li a {
   padding: 0.5em 1em;
 }
 
+.active a,
 li a:hover {
   background-color: var(--clr-darkgray);
 }
