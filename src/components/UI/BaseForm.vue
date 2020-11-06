@@ -52,7 +52,8 @@ textarea:focus {
   border: 1px solid var(--clr-primary);
 }
 
-.error input {
+.error input,
+.error textarea {
   background-color: var(--clr-danger-soft);
   border: 1px solid var(--clr-danger);
 }
