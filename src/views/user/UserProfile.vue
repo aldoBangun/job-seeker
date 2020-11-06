@@ -11,6 +11,11 @@
         <li :class="{ active: selectedTab === 'add-job' }">
           <a href="#" @click="selectTab('add-job')">Post Jobs</a>
         </li>
+        <li :class="{ active: selectedTab === 'interview-requests' }">
+          <a href="#" @click="selectTab('interview-requests')">
+            Requests
+          </a>
+        </li>
       </ul>
     </div>
     <main>
@@ -30,11 +35,12 @@ import { mapGetters } from 'vuex';
 import UserOverview from '../../components/user/UserOverview';
 import EditProfile from '../../components/user/EditProfile';
 import AddJob from '../../components/user/AddJob';
+import InterviewRequests from '../../components/user/InterviewRequests';
 
 export default {
   data() {
     return {
-      selectedTab: 'user-overview'
+      selectedTab: 'interview-requests'
     };
   },
   methods: {
@@ -45,7 +51,8 @@ export default {
   components: {
     UserOverview,
     EditProfile,
-    AddJob
+    AddJob,
+    InterviewRequests
   },
   computed: {
     ...mapGetters(['user']),
@@ -53,7 +60,8 @@ export default {
       const { selectedTab } = this;
       if (selectedTab === 'user-overview') return 'Overview';
       if (selectedTab === 'edit-profile') return 'Edit Profile';
-      return 'Post a Job';
+      if (selectedTab === 'add-job') return 'Post a Job';
+      return 'Interview Requests';
     }
   }
 };
