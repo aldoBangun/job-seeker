@@ -15,9 +15,11 @@
     </div>
     <main>
       <h2 class="title">{{ pageTitle }}</h2>
-      <keep-alive>
-        <component :is="selectedTab" @switch-tab="selectTab"></component>
-      </keep-alive>
+      <transition name="profile">
+        <keep-alive>
+          <component :is="selectedTab" @switch-tab="selectTab"></component>
+        </keep-alive>
+      </transition>
     </main>
   </section>
 </template>
@@ -89,5 +91,26 @@ main {
 .title {
   text-align: center;
   margin: 0 0 2rem;
+}
+
+.profile-enter-from {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.profile-enter-active,
+.profile-leave-active {
+  transition: 0.25s;
+}
+
+.profile-enter-to,
+.profile-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.profile-leave-to {
+  opacity: 0;
+  transform: translateY(50px);
 }
 </style>
