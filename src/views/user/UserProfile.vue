@@ -16,7 +16,7 @@
     <main>
       <h2 class="title">{{ pageTitle }}</h2>
       <keep-alive>
-        <component :is="selectedTab"></component>
+        <component :is="selectedTab" @switch-tab="selectTab"></component>
       </keep-alive>
     </main>
   </section>
