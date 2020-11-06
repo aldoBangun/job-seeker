@@ -21,13 +21,19 @@
         Back
       </base-button>
       <base-form @submit.prevent="submitProposal" v-else>
-        <div class="form-group">
+        <div class="form-group" :class="{ error: invalidName }">
           <label for="name">name</label>
           <input type="text" id="name" v-model.trim="name" />
+          <small class="error" v-if="invalidName"
+            >Name shouldn't be empty</small
+          >
         </div>
-        <div class="form-group">
+        <div class="form-group" :class="{ error: invalidMessage }">
           <label for="message">message</label>
           <textarea id="message" v-model.trim="message" rows="4"></textarea>
+          <small class="error" v-if="invalidMessage"
+            >Please add some message</small
+          >
         </div>
         <base-button mode="btn-block btn-rounded btn-primary">
           Submit Proposal
@@ -43,6 +49,8 @@ export default {
     return {
       name: '',
       message: '',
+      invalidName: false,
+      invalidMessage: false,
       error: null
     };
   },
@@ -67,11 +75,17 @@ export default {
     }
   },
   methods: {
-    submitProposal() {
+    async submitProposal() {
       const { name, message, userId, jobId } = this;
       const proposal = { name, message, userId, jobId };
       if (userId) {
-        this.$store.dispatch('proposals/addProposal', proposal);
+        if (name !== '' && message !== '') {
+          await this.$store.dispatch('proposals/addProposal', proposal);
+          this.$store.dispatch('jobs/loadJobs');
+        } else {
+          if (name === '') this.invalidName = true;
+          if (message === '') this.invalidMessage = true;
+        }
       } else {
         this.error = null;
         this.error = 'Login Required. Sign In now?';
