@@ -1,16 +1,24 @@
 <template>
-  <li>
-    <h3>Applicant</h3>
-    <p>{{ proposal.name }}</p>
-    <h3>Skills</h3>
-    <base-badge v-for="skill in user.expertise" :key="skill" :title="skill">
-    </base-badge>
-    <h3>Message</h3>
-    <p>{{ proposal.message }}</p>
-    <h3>Applied to your job</h3>
-    <p>{{ job.title }}</p>
-    <base-button mode="btn-outline">Applicant Details</base-button>
-    <base-button> Approve </base-button>
+  <li :class="{ active: isActive }" @click="toggleActive">
+    <div class="content">
+      <header>
+        <h3>{{ job.title }}</h3>
+        <p>{{ proposal.name }}</p>
+        <base-badge v-for="skill in user.expertise" :key="skill" :title="skill">
+        </base-badge>
+      </header>
+
+      <main>
+        <h4>Message</h4>
+        <p>{{ proposal.message }}</p>
+        <div class="actions">
+          <base-button mode="btn-outline" @click.stop="">
+            Applicant Details
+          </base-button>
+          <base-button @click.stop=""> Approve </base-button>
+        </div>
+      </main>
+    </div>
   </li>
 </template>
 
@@ -20,6 +28,16 @@ export default {
     proposal: {
       type: Object,
       required: true
+    }
+  },
+  data() {
+    return {
+      isActive: false
+    };
+  },
+  methods: {
+    toggleActive() {
+      this.isActive = !this.isActive;
     }
   },
   computed: {
@@ -39,18 +57,47 @@ export default {
 
 <style scoped>
 li {
-  padding: 2rem;
-  border-radius: 1rem;
+  position: relative;
+  border-radius: 0.5rem;
   background-color: var(--clr-light);
   border: 1px solid var(--clr-lightgray);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.content {
+  padding: 2rem;
+}
+
+main {
+  overflow: hidden;
+  max-height: 0;
+  transition: 0.5s;
 }
 
 li:hover {
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 255, 0, 0.05);
 }
 
-li h3::after {
+li.active main {
+  max-height: 500px;
+}
+
+li:not(.active) .actions {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  transform: translateY(-50%);
+  margin: 0;
+}
+
+.actions {
+  margin: 2rem 0 0;
+  transition: 0.25s;
+}
+
+li h4::after {
   content: ' :';
 }
 </style>
