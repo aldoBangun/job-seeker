@@ -12,8 +12,9 @@ Perharps you want to review my code or use it as your school assignment in the f
 ## Disadvantage
 
 - Using localStorage to store the data (so don't expect a super safe security 😁)
-- Build with Vue-3 (BETA version) which is i'm not really feel confortable for some bugs/glitches
+- Build with Vue-3 (BETA version) which is i'm not really feel confortable for some bugs/glitches.
 - In this app i just wanna dive into the bussiness logic and will fix the UI soon.
+- I'm not using router in some important routes instead of using tab. (which is not good)
 
 ## Dependencies
 
