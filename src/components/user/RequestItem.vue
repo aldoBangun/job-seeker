@@ -3,17 +3,23 @@
     <div class="content">
       <header>
         <h3>{{ job.title }}</h3>
-        <p>{{ proposal.name }}</p>
-        <base-badge v-for="skill in user.expertise" :key="skill" :title="skill">
-        </base-badge>
+        <router-link to="/u1">{{ proposal.name }}</router-link>
+        <div>
+          <base-badge
+            v-for="skill in user.expertise"
+            :key="skill"
+            :title="skill"
+          >
+          </base-badge>
+        </div>
       </header>
 
       <main>
         <h4>Message</h4>
         <p>{{ proposal.message }}</p>
         <div class="actions">
-          <base-button mode="btn-outline" @click.stop="">
-            Applicant Details
+          <base-button mode="btn-danger" @click.stop="">
+            Decline
           </base-button>
           <base-button @click.stop=""> Approve </base-button>
         </div>
@@ -66,22 +72,33 @@ li {
   cursor: pointer;
 }
 
-.content {
-  padding: 2rem;
-}
-
-main {
-  overflow: hidden;
-  max-height: 0;
-  transition: 0.5s;
-}
-
 li:hover {
   background-color: rgba(0, 255, 0, 0.05);
 }
 
 li.active main {
   max-height: 500px;
+}
+
+.content {
+  padding: 2rem;
+}
+
+a {
+  display: inline-block;
+  color: var(--clr-primary);
+  font-weight: 500;
+  margin: 0 0 1rem;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+main {
+  overflow: hidden;
+  max-height: 0;
+  transition: 0.5s;
 }
 
 li:not(.active) .actions {
