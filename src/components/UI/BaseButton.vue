@@ -30,7 +30,7 @@ export default {
   margin-right: 0.5em;
   color: var(--clr-light);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
-  transition: 0.15s;
+  transition: 0.1s;
 }
 
 .btn:hover {
@@ -61,6 +61,12 @@ export default {
   color: currentcolor;
   border: 1px solid currentColor;
   background-color: transparent;
+}
+
+.btn-outline:hover {
+  background-color: var(--clr-dark);
+  color: var(--clr-light);
+  border: 1px solid var(--clr-dark);
 }
 
 .btn-block {
