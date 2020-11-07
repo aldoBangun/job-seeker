@@ -1,11 +1,14 @@
 <template>
-  <ul>
+  <ul v-if="proposals.length">
     <RequestItem
       v-for="prop in proposals"
       :key="prop.proposalId"
       :proposal="prop"
     />
   </ul>
+  <base-card v-else>
+    <h3>No Request Yet!</h3>
+  </base-card>
 </template>
 
 <script>
@@ -41,5 +44,9 @@ export default {
 <style scoped>
 ul > * + * {
   margin: 1rem 0 0;
+}
+
+h3 {
+  text-align: center;
 }
 </style>

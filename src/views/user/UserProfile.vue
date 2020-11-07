@@ -40,7 +40,7 @@ import InterviewRequests from '../../components/user/InterviewRequests';
 export default {
   data() {
     return {
-      selectedTab: 'interview-requests'
+      selectedTab: 'user-overview'
     };
   },
   methods: {
