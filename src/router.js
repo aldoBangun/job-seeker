@@ -9,6 +9,7 @@ import UserRegister from './components/auth/UserRegister.vue';
 import UserProfile from './views/user/UserProfile.vue';
 import JobDetails from './components/jobs/JobDetails.vue';
 import AddProposal from './components/proposals/AddProposal.vue';
+import UserDetails from './components/user/UserDetails.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -18,6 +19,7 @@ const router = createRouter({
     { path: '/jobs/:jobId', component: JobDetails },
     { path: '/jobs/:jobId/apply-job', component: AddProposal },
     { path: '/profile', component: UserProfile, meta: { needAuth: true } },
+    { path: '/profile/:userId', component: UserDetails },
     {
       path: '/auth',
       redirect: '/auth/login',

@@ -3,7 +3,7 @@
     <div class="content">
       <header>
         <h3>{{ job.title }}</h3>
-        <router-link to="/u1">{{ proposal.name }}</router-link>
+        <router-link :to="userDetails">{{ proposal.name }}</router-link>
         <div>
           <base-badge
             v-for="skill in user.expertise"
@@ -56,6 +56,9 @@ export default {
       const users = this.$store.getters.users;
 
       return users.find(user => user.userId === this.proposal.userId);
+    },
+    userDetails() {
+      return `${this.$route.path}/${this.user.userId}`;
     }
   }
 };
