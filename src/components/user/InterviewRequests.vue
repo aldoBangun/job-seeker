@@ -1,13 +1,11 @@
 <template>
-  <base-container>
-    <ul>
-      <RequestItem
-        v-for="prop in proposals"
-        :key="prop.proposalId"
-        :proposal="prop"
-      />
-    </ul>
-  </base-container>
+  <ul>
+    <RequestItem
+      v-for="prop in proposals"
+      :key="prop.proposalId"
+      :proposal="prop"
+    />
+  </ul>
 </template>
 
 <script>
