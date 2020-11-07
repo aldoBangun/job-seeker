@@ -2,6 +2,11 @@ import fetchDatas from './modules/utilities/fetchDatas';
 import setDatas from './modules/utilities/setDatas';
 
 export default {
+  async loadUsers(context) {
+    const users = await fetchDatas('users');
+
+    context.commit('loadUsers', users);
+  },
   createSession(_, payload) {
     localStorage.setItem('isLoggedIn', payload);
   },

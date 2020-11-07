@@ -15,6 +15,7 @@ const store = createStore({
   },
   state() {
     return {
+      users: [],
       user: {
         email: null,
         userId: null,
@@ -23,6 +24,9 @@ const store = createStore({
     };
   },
   getters: {
+    users(state) {
+      return state.users;
+    },
     user(state) {
       return state.user;
     },

@@ -15,6 +15,7 @@ export default {
     TheNavbar
   },
   beforeCreate() {
+    this.$store.dispatch('loadUsers');
     this.$store.dispatch('loadSession');
     this.$store.dispatch('jobs/loadJobs');
     this.$store.dispatch('proposals/loadProposals');
