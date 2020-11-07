@@ -7,7 +7,6 @@ Perharps you want to review my code or use it as your school assignment in the f
 
 - No Copyright
 - Free to use/review/modify
-- PR is welcomed (so that i can learn from you too 😅)
 
 ## Disadvantage
 
